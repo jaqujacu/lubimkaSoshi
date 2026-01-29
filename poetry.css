@@ -526,3 +526,23 @@ body {
     -ms-user-select: none !important;
     outline: none !important;
 }
+
+/* === ГАРАНТИРОВАННЫЙ ЗАПРЕТ ВЫДЕЛЕНИЯ === */
+.back-to-top,
+.nav-toggle-btn {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+
+    /* Отключаем выделение через события */
+    -webkit-touch-callout: none !important; /* iOS Safari */
+    -webkit-tap-highlight-color: transparent !important; /* Убирает серый отклик на тап */
+
+    /* Отключаем перетаскивание */
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+
+    /* Убираем фокус-обводку */
+    outline: none !important;
+}
