@@ -926,14 +926,11 @@ function setupNavToggle() {
     
     if (!toggleBtn || !nav) return;
 
-    // Только на мобильных
+    // Скрываем на десктопе
     if (window.innerWidth > 768) {
         toggleBtn.style.display = 'none';
         return;
     }
-
-    const data = getData();
-    const hasShownNavTip = data.navTipShown === true; // ← важно: === true
 
     toggleBtn.addEventListener('click', () => {
         const isActive = nav.classList.contains('active');
@@ -944,11 +941,11 @@ function setupNavToggle() {
             nav.classList.add('active');
             toggleBtn.textContent = '−';
             
-            // Показываем ТОЛЬКО если ещё не показывали
-            if (!hasShownNavTip) {
+            // Читаем данные СЕЙЧАС
+            const data = getData();
+            if (data.navTipShown !== true) {
                 setTimeout(() => {
                     showNavTip();
-                    // Сохраняем флаг
                     data.navTipShown = true;
                     saveData(data);
                 }, 300);
@@ -956,7 +953,6 @@ function setupNavToggle() {
         }
     });
 }
-
 // === ПОДСВЕТКА АКТИВНОГО СТИХА ===
 function setupActiveHighlight() {
     const observer = new IntersectionObserver((entries) => {
@@ -981,5 +977,6 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
