@@ -419,7 +419,7 @@ body {
         opacity: 1;
     }
 
-    /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ === */
+    /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ (видна ТОЛЬКО на мобильных) === */
     .mobile-nav-toggle {
         display: block !important;
         position: fixed;
@@ -433,3 +433,4 @@ body {
 .mobile-nav-toggle {
     display: none !important;
 }
+
