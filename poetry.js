@@ -920,14 +920,22 @@ function setupBackToTop() {
     }
 }
 
-// === КНОПКА ПЕРЕКЛЮЧЕНИЯ МЕНЮ ===
 function setupNavToggle() {
     const toggleBtn = document.getElementById('navToggleBtn');
     const nav = document.getElementById('poetryNav');
-    const data = getData();
-    const hasShownNavTip = data.navTipShown;
-
+    
     if (!toggleBtn || !nav) return;
+
+    // Проверяем, мобильное ли устройство
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) {
+        // На десктопе убираем кнопку вообще
+        toggleBtn.style.display = 'none';
+        return;
+    }
+
+    const data = getData();
+    const hasShownNavTip = data.navTipShown === true;
 
     toggleBtn.addEventListener('click', () => {
         const isActive = nav.classList.contains('active');
@@ -938,7 +946,7 @@ function setupNavToggle() {
             nav.classList.add('active');
             toggleBtn.textContent = '−';
             
-            // Показываем подсказку только в первый раз
+            // Показываем подсказку ТОЛЬКО в первый раз
             if (!hasShownNavTip) {
                 setTimeout(() => {
                     showNavTip();
@@ -974,3 +982,4 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
