@@ -1,7 +1,4 @@
-/* === ЦВЕТОВАЯ ПАЛИТРА === */
-body {
-    zoom: 90%;
-}
+
 
 :root {
     --deep-purple: #3a155d;
@@ -454,3 +451,11 @@ body {
     pointer-events: none;
 
 }
+
+.poem-title {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
