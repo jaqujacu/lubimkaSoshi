@@ -523,7 +523,7 @@ const poems = [
 И так хочется многое сказать, 
 Но я боюсь увидеть вновь,
 Что-то на потухшую звезду похожее.
-Почему же эта злостная судьба, 
+Почем punitive же эта злостная судьба, 
 Из раза в раз проверяет прочность
 Нити, что связывает наши сердца, 
 Или же мы сами эта судьба?
@@ -720,7 +720,8 @@ function getData() {
     const saved = localStorage.getItem('poetryData');
     return saved ? JSON.parse(saved) : {
         bookmarks: {},
-        tipShown: false
+        tipShown: false,
+        navTipShown: false // ← новое поле
     };
 }
 
@@ -729,10 +730,10 @@ function saveData(data) {
 }
 
 // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
-let currentPoemIndex = 0; // активный стих (0-based)
-const visibleRange = 2;   // сколько пунктов до/после показывать
+let currentPoemIndex = 0;
+const visibleRange = 2;
 
-// === ПОДСКАЗКА ===
+// === ПОДСКАЗКИ ===
 function showBookmarkTip() {
     const modal = document.getElementById('bookmarkTip');
     const text = modal.querySelector('.modal-text');
@@ -745,7 +746,18 @@ function showBookmarkTip() {
     };
 }
 
-// === ОБНОВЛЕНИЕ МЕНЮ С ПЕРЕДАННЫМИ ДАННЫМИ ===
+function showNavTip() {
+    const modal = document.getElementById('navTip');
+    if (!modal) return;
+    
+    modal.style.display = 'flex';
+    const btn = modal.querySelector('.modal-btn');
+    btn.onclick = () => {
+        modal.style.display = 'none';
+    };
+}
+
+// === ОБНОВЛЕНИЕ МЕНЮ ===
 function updateNavigationMenuWithData(data) {
     const nav = document.getElementById('poetryNav');
     if (!nav) return;
@@ -796,13 +808,12 @@ function updateNavigationMenuWithData(data) {
     nav.appendChild(downBtn);
 }
 
-// === ОБНОВЛЕНИЕ МЕНЮ (при прокрутке) ===
 function updateNavigationMenu() {
     const data = getData();
     updateNavigationMenuWithData(data);
 }
 
-// === ПРОКРУТКА К СТИХУ ===
+// === ПРОКРУТКА ===
 function scrollToPoem(index) {
     currentPoemIndex = index;
     const target = document.getElementById(`anchor-${index + 1}`);
@@ -817,7 +828,7 @@ function scrollToPoem(index) {
     updateNavigationMenu();
 }
 
-// === ГЕНЕРАЦИЯ СТИХОВ ===
+// === РЕНДЕР СТИХОВ ===
 function renderPoems() {
     const container = document.getElementById('poemsContainer');
     const data = getData();
@@ -849,7 +860,6 @@ function renderPoems() {
         container.appendChild(poemEl);
     });
 
-    // Добавляем финальный декор
     const lastPoem = document.getElementById(`poem-${poems.length}`);
     if (lastPoem) {
         const finalDecor = document.createElement('div');
@@ -860,8 +870,9 @@ function renderPoems() {
 
     setupBookmarkButtons();
     setupActiveHighlight();
-     setupBackToTop();
-    updateNavigationMenu(); // Инициализация меню
+    setupBackToTop();
+    setupNavToggle(); // ← новая функция
+    updateNavigationMenu();
 }
 
 // === ЗАКЛАДКИ ===
@@ -883,6 +894,7 @@ function setupBookmarkButtons() {
                     showBookmarkTip();
                     hasShownTip = true;
                     data.tipShown = true;
+                    saveData(data);
                 }
             } else {
                 btn.textContent = '🤍';
@@ -906,6 +918,36 @@ function setupBackToTop() {
             });
         });
     }
+}
+
+// === КНОПКА ПЕРЕКЛЮЧЕНИЯ МЕНЮ ===
+function setupNavToggle() {
+    const toggleBtn = document.getElementById('navToggleBtn');
+    const nav = document.getElementById('poetryNav');
+    const data = getData();
+    const hasShownNavTip = data.navTipShown;
+
+    if (!toggleBtn || !nav) return;
+
+    toggleBtn.addEventListener('click', () => {
+        const isActive = nav.classList.contains('active');
+        if (isActive) {
+            nav.classList.remove('active');
+            toggleBtn.textContent = '+';
+        } else {
+            nav.classList.add('active');
+            toggleBtn.textContent = '−';
+            
+            // Показываем подсказку только в первый раз
+            if (!hasShownNavTip) {
+                setTimeout(() => {
+                    showNavTip();
+                    data.navTipShown = true;
+                    saveData(data);
+                }, 300);
+            }
+        }
+    });
 }
 
 // === ПОДСВЕТКА АКТИВНОГО СТИХА ===
