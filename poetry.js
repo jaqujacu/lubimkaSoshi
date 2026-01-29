@@ -926,16 +926,14 @@ function setupNavToggle() {
     
     if (!toggleBtn || !nav) return;
 
-    // Проверяем, мобильное ли устройство
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) {
-        // На десктопе убираем кнопку вообще
+    // Только на мобильных
+    if (window.innerWidth > 768) {
         toggleBtn.style.display = 'none';
         return;
     }
 
     const data = getData();
-    const hasShownNavTip = data.navTipShown === true;
+    const hasShownNavTip = data.navTipShown === true; // ← важно: === true
 
     toggleBtn.addEventListener('click', () => {
         const isActive = nav.classList.contains('active');
@@ -946,10 +944,11 @@ function setupNavToggle() {
             nav.classList.add('active');
             toggleBtn.textContent = '−';
             
-            // Показываем подсказку ТОЛЬКО в первый раз
+            // Показываем ТОЛЬКО если ещё не показывали
             if (!hasShownNavTip) {
                 setTimeout(() => {
                     showNavTip();
+                    // Сохраняем флаг
                     data.navTipShown = true;
                     saveData(data);
                 }, 300);
@@ -982,4 +981,5 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
