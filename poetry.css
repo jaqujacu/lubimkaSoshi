@@ -1,12 +1,10 @@
-
-
 :root {
-    --deep-purple: #3a155d;
+    --deep-purple: #3c005a;
     --mid-purple: #6a3a9f;
     --light-purple: #9d7dce;
     --accent-color: #e8b4f4;
     --soft-white: #ffffff;
-    --dark-bg: #251238;
+    --dark-bg: #3c005a;
 }
 
 * {
@@ -16,8 +14,8 @@
 }
 
 body {
-    background-color: #3c005a; /* ← чистый сплошной цвет */
-    background: linear-gradient(135deg, #3c005a 0%, #3c005a 100%); /* ← градиент, но одного цвета */
+    background-color: #3c005a;
+    background: linear-gradient(135deg, #3c005a 0%, #3c005a 100%);
     color: var(--soft-white);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.7;
@@ -151,7 +149,6 @@ body {
     margin-right: auto;
 }
 
-/* === ДЕКОР НАД СТИХОМ === */
 .poem-decor {
     text-align: center;
     font-size: 1.1rem;
@@ -183,7 +180,7 @@ body {
 }
 
 .bookmark-btn.filled {
-    color: #000; /* черное сердце */
+    color: #000;
 }
 
 /* === РАЗДЕЛИТЕЛЬ === */
@@ -195,7 +192,7 @@ body {
     opacity: 0.55;
 }
 
-/* === НАВИГАЦИЯ === */
+/* === НАВИГАЦИЯ (ДЕСКТОП) === */
 .poetry-nav {
     position: fixed;
     left: 22px;
@@ -203,28 +200,81 @@ body {
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     z-index: 10;
     width: 140px;
     user-select: none;
-    webkit-user-select: none;
-    moz-user-select: none;
-    ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .nav-item {
-    color: rgba(232, 180, 244, 0.7);
+    color: rgba(232, 180, 244, 0.9);
     cursor: pointer;
     font-size: 0.92rem;
     padding: 6px 10px;
     border-radius: 6px;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
     font-weight: 500;
+    text-align: center;
 }
 
-.nav-item:hover,
 .nav-item.active {
     color: var(--accent-color);
+    background: rgba(106, 58, 159, 0.3);
+}
+
+.nav-arrow {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-arrow:hover {
+    opacity: 1;
+}
+
+/* === КНОПКИ: НАВЕРХ И ПЕРЕКЛЮЧЕНИЕ МЕНЮ === */
+.back-to-top,
+.nav-toggle-btn {
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(106, 58, 159, 0.4);
+    border: 1px solid rgba(232, 180, 244, 0.3);
+    color: var(--soft-white);
+    font-family: inherit;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.back-to-top:hover,
+.nav-toggle-btn:hover {
+    background: rgba(232, 180, 244, 0.25);
+    transform: translateY(-2px);
+    border-color: rgba(232, 180, 244, 0.5);
+}
+
+.back-to-top {
+    bottom: 20px;
+    right: 20px;
+}
+
+.nav-toggle-btn {
+    bottom: 20px;
+    left: 20px;
 }
 
 /* === ПОДВАЛ === */
@@ -284,6 +334,24 @@ body {
     background: rgba(232, 180, 244, 0.35);
 }
 
+/* === ЯКОРЬ === */
+.poem-anchor {
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.poem-final-decor {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin-top: 1.5rem;
+    opacity: 0.8;
+    letter-spacing: 2px;
+}
+
 /* === АДАПТИВНОСТЬ === */
 @media (max-width: 768px) {
     .home-btn {
@@ -291,24 +359,6 @@ body {
         left: 12px;
         font-size: 0.85rem;
         padding: 6px 12px;
-    }
-
-    .poetry-nav {
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 120px;
-    }
-
-    .nav-item {
-        font-size: 0.82rem;
-        padding: 4px 8px;
-    }
-
-    .bookmark-btn {
-        bottom: 12px;
-        right: 12px;
-        font-size: 1.6rem;
     }
 
     .title {
@@ -336,142 +386,50 @@ body {
         padding-bottom: 3.5rem;
     }
 
-    .back-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .bookmark-btn {
+        bottom: 12px;
+        right: 12px;
+        font-size: 1.6rem;
     }
-}
 
-/* === ЯКОРЬ ДЛЯ НАВИГАЦИИ === */
-.poem-anchor {
-    height: 1px;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* === ФИНАЛЬНЫЙ ДЕКОР ПОСЛЕ ПОСЛЕДНЕГО СТИХА === */
-.poem-final-decor {
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--accent-color);
-    margin-top: 1.5rem;
-    opacity: 0.8;
-    letter-spacing: 2px;
-}
-
-/* === НАВИГАЦИЯ — ТОЛЬКО 5 ПУНКТОВ === */
-.poetry-nav {
-    position: fixed;
-    left: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 10;
-    width: 140px;
-}
-
-.nav-item {
-    color: rgba(232, 180, 244, 0.9);
-    cursor: pointer;
-    font-size: 0.92rem;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    text-align: center;
-}
-
-.nav-item.active {
-    color: var(--accent-color);
-    background: rgba(106, 58, 159, 0.3);
-}
-
-.nav-arrow {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-align: center;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-
-.nav-arrow:hover {
-    opacity: 1;
-}
-
-/* === ФИНАЛЬНЫЙ ДЕКОР === */
-.poem-final-decor {
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--accent-color);
-    margin-top: 1.5rem;
-    opacity: 0.8;
-    letter-spacing: 2px;
-}
-
-/* === ЯКОРЬ === */
-.poem-anchor {
-    height: 1px;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    pointer-events: none;
-
-}
-
-/* === КНОПКИ: НАВЕРХ И ПЕРЕКЛЮЧЕНИЕ МЕНЮ === */
-.back-to-top,
-.nav-toggle-btn {
-    position: fixed;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(106, 58, 159, 0.4);
-    border: 1px solid rgba(232, 180, 244, 0.3);
-    color: var(--soft-white);
-    font-family: inherit;
-    font-size: 1.3rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: all 0.25s ease;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-
-.back-to-top:hover,
-.nav-toggle-btn:hover {
-    background: rgba(232, 180, 244, 0.25);
-    transform: translateY(-2px);
-    border-color: rgba(232, 180, 244, 0.5);
-}
-
-.back-to-top {
-    bottom: 20px;
-    right: 20px;
-}
-
-.nav-toggle-btn {
-    bottom: 20px;
-    left: 20px;
-}
-
-@media (max-width: 768px) {
     .back-to-top,
     .nav-toggle-btn {
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
     }
+
+    /* === СКРЫТИЕ НАВИГАЦИИ НА МОБИЛЬНЫХ === */
+    .poetry-nav {
+        display: none !important;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        left: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 120px !important;
+        position: fixed !important;
+        z-index: 10 !important;
+    }
+
+    .poetry-nav.active {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 1;
+    }
+
+    /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ === */
+    .mobile-nav-toggle {
+        display: block !important;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 100;
+    }
 }
 
-
-
-
+/* === СКРЫВАЕМ КНОПКУ НА ДЕСКТОПЕ === */
+.mobile-nav-toggle {
+    display: none !important;
+}
