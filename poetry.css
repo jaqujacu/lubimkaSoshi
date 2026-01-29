@@ -206,6 +206,10 @@ body {
     gap: 10px;
     z-index: 10;
     width: 140px;
+    user-select: none;
+    webkit-user-select: none;
+    moz-user-select: none;
+    ms-user-select: none;
 }
 
 .nav-item {
@@ -452,10 +456,4 @@ body {
 
 }
 
-.poem-title {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
 
