@@ -33,10 +33,6 @@
             <!-- Стихи будут здесь -->
         </main>
 
-        <button class="back-to-top" id="backToTop">
-            <span>↑</span>
-        </button>
-
         <footer class="poetry-footer">
             <p>Создано для Соши | © Твой котёнок. 2026</p>
         </footer>
@@ -58,14 +54,21 @@
     </div>
 </div>
     
+<!-- Кнопка "наверх" -->
+<button class="back-to-top" id="backToTop" onselectstart="return false" ondragstart="return false">
+    <span>↑</span>
+</button>
+
+<!-- Кнопка меню -->
 <div class="mobile-nav-toggle">
-    <button id="navToggleBtn" class="nav-toggle-btn">+</button>
+    <button id="navToggleBtn" class="nav-toggle-btn" onselectstart="return false" ondragstart="return false">+</button>
 </div>
     
     <script src="poetry.js"></script>
 </body>
 
 </html>
+
 
 
 
