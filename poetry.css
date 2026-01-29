@@ -434,3 +434,31 @@ body {
     display: none !important;
 }
 
+/* === ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ: КНОПКА МЕНЮ НА МОБИЛЬНЫХ === */
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 20px !important;
+        z-index: 9999 !important;
+    }
+
+    .nav-toggle-btn {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        background: rgba(106, 58, 159, 0.6) !important;
+        border: 2px solid #e8b4f4 !important;
+        color: white !important;
+        font-size: 20px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
