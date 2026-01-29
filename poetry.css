@@ -460,3 +460,23 @@ body {
 .mobile-nav-toggle {
     display: none !important;
 }
+
+/* === АВАРИЙНЫЙ РЕЖИМ: ВСЕГДА ПОКАЗЫВАТЬ КНОПКУ НА МОБИЛЬНЫХ === */
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 20px !important;
+        z-index: 9999 !important;
+    }
+    .nav-toggle-btn {
+        background: #6a3a9f !important;
+        color: white !important;
+        border: 2px solid #e8b4f4 !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        font-size: 20px !important;
+    }
+}
