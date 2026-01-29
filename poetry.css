@@ -227,38 +227,6 @@ body {
     color: var(--accent-color);
 }
 
-/* === КНОПКА НАВЕРХ === */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 10px;
-    background: rgba(106, 58, 159, 0.4);
-    border: 1px solid rgba(232, 180, 244, 0.3);
-    color: var(--soft-white);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    font-family: inherit;
-    font-size: 1.3rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: all 0.25s ease;
-}
-
-.back-to-top:hover {
-    background: rgba(232, 180, 244, 0.25);
-    transform: translateY(-2px);
-    border-color: rgba(232, 180, 244, 0.5);
-}
-
-.back-to-top span {
-    display: block;
-    line-height: 1;
-}
-
 /* === ПОДВАЛ === */
 .poetry-footer {
     text-align: center;
@@ -456,56 +424,53 @@ body {
 
 }
 
-/* === КНОПКА ПЕРЕКЛЮЧЕНИЯ НАВИГАЦИИ (только на мобильных) === */
-.mobile-nav-toggle {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 10px;
-    z-index: 100;
-}
-
+/* === КНОПКИ: НАВЕРХ И ПЕРЕКЛЮЧЕНИЕ МЕНЮ === */
+.back-to-top,
 .nav-toggle-btn {
-    width: 42px;
-    height: 42px;
+    position: fixed;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: rgba(106, 58, 159, 0.6);
-    border: 2px solid var(--accent-color);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+    background: rgba(106, 58, 159, 0.4);
+    border: 1px solid rgba(232, 180, 244, 0.3);
+    color: var(--soft-white);
+    font-family: inherit;
+    font-size: 1.3rem;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
-/* На мобильных: скрываем навигацию по умолчанию */
+.back-to-top:hover,
+.nav-toggle-btn:hover {
+    background: rgba(232, 180, 244, 0.25);
+    transform: translateY(-2px);
+    border-color: rgba(232, 180, 244, 0.5);
+}
+
+.back-to-top {
+    bottom: 20px;
+    right: 20px;
+}
+
+.nav-toggle-btn {
+    bottom: 20px;
+    left: 20px;
+}
+
 @media (max-width: 768px) {
-    .mobile-nav-toggle {
-        display: block;
-    }
-
-    .poetry-nav {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .poetry-nav.active {
-        display: flex !important;
-        flex-direction: column;
-        gap: 8px;
-        opacity: 1;
-        left: 12px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        width: 120px !important;
+    .back-to-top,
+    .nav-toggle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 }
-
 
 
 
