@@ -860,13 +860,13 @@ function renderPoems() {
         container.appendChild(poemEl);
     });
 
-    const lastPoem = document.getElementById(`poem-${poems.length}`);
-    if (lastPoem) {
-        const finalDecor = document.createElement('div');
-        finalDecor.className = 'poem-final-decor';
-        finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
-        lastPoem.appendChild(finalDecor);
-    }
+const lastPoem = document.getElementById(`poem-${poems.length}`);
+if (lastPoem) {
+    const finalDecor = document.createElement('div');
+    finalDecor.className = 'poem-final-decor';
+    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
+    container.appendChild(finalDecor); // ← после всех стихов
+}
 
     setupBookmarkButtons();
     setupActiveHighlight();
@@ -875,21 +875,23 @@ function renderPoems() {
     updateNavigationMenu();
 }
 
-// === ЗАКЛАДКИ ===
 function setupBookmarkButtons() {
+    const container = document.getElementById('poemsContainer');
     const data = getData();
     let hasShownTip = data.tipShown;
 
-    document.querySelectorAll('.bookmark-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+    container.addEventListener('click', (e) => {
+        // Проверяем, кликнули ли по сердечку
+        if (e.target.classList.contains('bookmark-btn')) {
+            const btn = e.target;
             const poemId = btn.dataset.poem;
             const isFilled = btn.textContent.trim() === '🖤';
-            
+
             if (!isFilled) {
                 btn.textContent = '🖤';
                 data.bookmarks[poemId] = true;
                 updateNavigationMenuWithData(data);
-                
+
                 if (!hasShownTip) {
                     showBookmarkTip();
                     hasShownTip = true;
@@ -901,9 +903,9 @@ function setupBookmarkButtons() {
                 delete data.bookmarks[poemId];
                 updateNavigationMenuWithData(data);
             }
-            
+
             saveData(data);
-        });
+        }
     });
 }
 
@@ -977,6 +979,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
