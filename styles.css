@@ -22,8 +22,8 @@ html {
 }
 
 body {
-    background-color: #4A235A; /* ← чистый сплошной цвет */
-    background: linear-gradient(135deg, #4A235A 0%, #7B4D84 100%); /* ← градиент, но одного цвета */
+    background-color: #392044; /* ← чистый сплошной цвет */
+    background: linear-gradient(135deg, #392044 0%, #4A235A 100%); /* ← градиент, но одного цвета */
     color: var(--soft-white);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.7;
@@ -770,6 +770,7 @@ body {
     color: var(--light-purple);
 
 }
+
 
 
 
