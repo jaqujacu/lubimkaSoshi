@@ -860,27 +860,7 @@ function renderPoems() {
         container.appendChild(poemEl);
     });
 
-    // Находим последний стих
-const lastPoem = document.getElementById(`poem-${poems.length}`);
-if (lastPoem) {
-    // Создаём декор
-    const finalDecor = document.createElement('div');
-    finalDecor.className = 'poem-final-decor';
-    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
-    
-    // Вставляем декор **в конец содержимого последнего стиха**
-    lastPoem.appendChild(finalDecor);
-}
-
-    setupBookmarkButtons();
-    setupActiveHighlight();
-    setupBackToTop();
-    setupNavToggle(); // ← новая функция
-    updateNavigationMenu();
-}
-
-// Создаём кнопку "Нажми сюда"
-const rewardButton = document.createElement('button');
+    const rewardButton = document.createElement('button');
 rewardButton.className = 'reward-btn';
 rewardButton.textContent = 'Нажми сюда';
 
@@ -937,6 +917,26 @@ overlay.addEventListener('click', () => {
     overlay.classList.remove('show');
     document.body.style.overflow = '';
 });
+
+    // Находим последний стих
+const lastPoem = document.getElementById(`poem-${poems.length}`);
+if (lastPoem) {
+    // Создаём декор
+    const finalDecor = document.createElement('div');
+    finalDecor.className = 'poem-final-decor';
+    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
+    
+    // Вставляем декор **в конец содержимого последнего стиха**
+    lastPoem.appendChild(finalDecor);
+}
+
+    setupBookmarkButtons();
+    setupActiveHighlight();
+    setupBackToTop();
+    setupNavToggle(); // ← новая функция
+    updateNavigationMenu();
+}
+
 
 function setupBookmarkButtons() {
     const container = document.getElementById('poemsContainer');
@@ -1042,6 +1042,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
