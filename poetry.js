@@ -712,8 +712,7 @@ const poems = [
 Даже под самой тусклой звездой, 
 Я отыщу тебя непременно. 
 Расти, мой лиловый цветочек, расти, 
-С тобой мы будем на веки.
-⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆`
+С тобой мы будем на веки.`
 ];
 
 // === ХРАНЕНИЕ ===
@@ -861,12 +860,83 @@ function renderPoems() {
         container.appendChild(poemEl);
     });
 
+    // Находим последний стих
+const lastPoem = document.getElementById(`poem-${poems.length}`);
+if (lastPoem) {
+    // Создаём декор
+    const finalDecor = document.createElement('div');
+    finalDecor.className = 'poem-final-decor';
+    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
+    
+    // Вставляем декор **в конец содержимого последнего стиха**
+    lastPoem.appendChild(finalDecor);
+}
+
     setupBookmarkButtons();
     setupActiveHighlight();
     setupBackToTop();
     setupNavToggle(); // ← новая функция
     updateNavigationMenu();
 }
+
+// Создаём кнопку "Нажми сюда"
+const rewardButton = document.createElement('button');
+rewardButton.className = 'reward-btn';
+rewardButton.textContent = 'Нажми сюда';
+
+// Стили для кнопки (можно вынести в CSS, но так быстрее)
+Object.assign(rewardButton.style, {
+    display: 'block',
+    margin: '3rem auto 5rem',
+    padding: '14px 36px',
+    backgroundColor: 'rgba(123, 76, 175, 0.4)',
+    border: '2px solid var(--accent-color)',
+    color: 'var(--soft-white)',
+    borderRadius: '50px',
+    fontSize: '1.2rem',
+    fontFamily: 'inherit',
+    cursor: 'pointer',
+    backdropFilter: 'blur(10px)',
+    transition: 'all 0.3s ease'
+});
+
+rewardButton.onmouseover = () => {
+    rewardButton.style.transform = 'translateY(-3px)';
+    rewardButton.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+};
+rewardButton.onmouseout = () => {
+    rewardButton.style.transform = 'translateY(0)';
+    rewardButton.style.boxShadow = 'none';
+};
+
+// Добавляем кнопку в контейнер (после всех стихов)
+container.appendChild(rewardButton);
+
+// Модальные элементы
+const modal = document.getElementById('rewardModal');
+const overlay = document.getElementById('modalOverlay');
+const closeModalBtn = document.getElementById('closeModalBtn');
+
+// Показать модалку
+rewardButton.addEventListener('click', () => {
+    modal.classList.add('show');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden'; // запрет прокрутки
+});
+
+// Закрыть по кнопке
+closeModalBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    document.body.style.overflow = ''; // вернуть прокрутку
+});
+
+// Закрыть по клику на подложку
+overlay.addEventListener('click', () => {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+});
 
 function setupBookmarkButtons() {
     const container = document.getElementById('poemsContainer');
@@ -972,6 +1042,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
