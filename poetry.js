@@ -899,25 +899,24 @@ const closeModalBtn = document.getElementById('closeModalBtn');
 
 // Показать модалку
 rewardButton.addEventListener('click', () => {
-    modal.classList.add('show');
-    overlay.classList.add('show');
+    document.getElementById('rewardModal').classList.add('show');
     document.body.style.overflow = 'hidden'; // запрет прокрутки
 });
 
 // Закрыть по кнопке
-closeModalBtn.addEventListener('click', () => {
-    modal.classList.remove('show');
-    overlay.classList.remove('show');
-    document.body.style.overflow = ''; // вернуть прокрутку
-});
-
-// Закрыть по клику на подложку
-overlay.addEventListener('click', () => {
-    modal.classList.remove('show');
-    overlay.classList.remove('show');
+document.getElementById('closeModalBtn').addEventListener('click', () => {
+    document.getElementById('rewardModal').classList.remove('show');
     document.body.style.overflow = '';
 });
 
+// Закрыть по клику ВНЕ окна
+document.getElementById('rewardModal').addEventListener('click', (e) => {
+    if (e.target.id === 'rewardModal') {
+        document.getElementById('rewardModal').classList.remove('show');
+        document.body.style.overflow = '';
+    }
+});
+    
     // Находим последний стих
 const lastPoem = document.getElementById(`poem-${poems.length}`);
 if (lastPoem) {
@@ -1042,6 +1041,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
