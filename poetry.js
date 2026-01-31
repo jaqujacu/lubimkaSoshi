@@ -862,6 +862,14 @@ function renderPoems() {
     });
 
 
+const lastPoem = document.getElementById(`poem-${poems.length}`);
+if (lastPoem) {
+    const finalDecor = document.createElement('div');
+    finalDecor.className = 'poem-final-decor';
+    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
+    container.appendChild(finalDecor); // ← после всех стихов
+}
+
     setupBookmarkButtons();
     setupActiveHighlight();
     setupBackToTop();
@@ -973,6 +981,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
