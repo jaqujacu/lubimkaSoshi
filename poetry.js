@@ -713,7 +713,7 @@ const poems = [
 Я отыщу тебя непременно. 
 Расти, мой лиловый цветочек, расти, 
 С тобой мы будем на веки.
-⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆
+⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆`
 ];
 
 // === ХРАНЕНИЕ ===
@@ -861,15 +861,6 @@ function renderPoems() {
         container.appendChild(poemEl);
     });
 
-
-const lastPoem = document.getElementById(`poem-${poems.length}`);
-if (lastPoem) {
-    const finalDecor = document.createElement('div');
-    finalDecor.className = 'poem-final-decor';
-    finalDecor.textContent = '⋆ ˚｡⋆୨♡୧⋆ ˚｡⋆';
-    container.appendChild(finalDecor); // ← после всех стихов
-}
-
     setupBookmarkButtons();
     setupActiveHighlight();
     setupBackToTop();
@@ -981,6 +972,7 @@ function setupActiveHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPoems();
 });
+
 
 
 
